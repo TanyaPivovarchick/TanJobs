@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name="resume")
+@NamedQuery(name="Resume.getAll", query="SELECT r FROM Resume r")
 public class Resume {
 
     @Id
@@ -40,10 +41,6 @@ public class Resume {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Timestamp getDate() {
         return date;
     }
@@ -60,28 +57,20 @@ public class Resume {
         this.careerObjective = careerObjective;
     }
 
-    public boolean getIsBusinessTripPossible() {
-        return businessTrip == 1;
+    public int getBusinessTrip() {
+        return businessTrip;
     }
 
-    public void setIsBusinessTripPossible(boolean isBusinessTripPossible) {
-        if (isBusinessTripPossible) {
-            businessTrip = 1;
-        } else {
-            businessTrip = 0;
-        }
+    public void setBusinessTrip(int businessTrip) {
+        this.businessTrip = businessTrip;
     }
 
-    public boolean getIsRelocationPossible() {
-        return relocation == 1;
+    public int getRelocation() {
+        return relocation;
     }
 
-    public void setIsRelocationPossible(boolean isRelocationPossible) {
-        if (isRelocationPossible) {
-            relocation = 1;
-        } else {
-            relocation = 0;
-        }
+    public void setRelocation(int relocation) {
+        this.relocation = relocation;
     }
 
     public String getSkills() {
