@@ -5,11 +5,10 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name="resume")
-@NamedQuery(name="Resume.getAll", query="SELECT r FROM Resume r")
 public class Resume {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
     private int id;
 
@@ -34,8 +33,8 @@ public class Resume {
     @Column(name="number_of_view")
     private int numberOfView;
 
-    @Column(name="aspirant_id")
-    private int aspirantId;
+    @Column(name="user_id")
+    private int userId;
 
     public int getId() {
         return id;
@@ -97,11 +96,11 @@ public class Resume {
         this.numberOfView = numberOfView;
     }
 
-    public int getAspirantId() {
-        return aspirantId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setAspirantId(int aspirantId) {
-        this.aspirantId = aspirantId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
