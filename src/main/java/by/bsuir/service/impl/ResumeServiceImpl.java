@@ -1,18 +1,22 @@
 package by.bsuir.service.impl;
 
-import by.bsuir.dao.IResumeDAO;
+import by.bsuir.dao.ResumeDAO;
 import by.bsuir.entity.Resume;
-import by.bsuir.service.IResumeService;
+import by.bsuir.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ResumeService implements IResumeService {
+public class ResumeServiceImpl implements ResumeService {
+
+    private final ResumeDAO resumeDAO;
 
     @Autowired
-    private IResumeDAO resumeDAO;
+    public ResumeServiceImpl(ResumeDAO resumeDAO) {
+        this.resumeDAO = resumeDAO;
+    }
 
     @Override
     public Resume getResumeById(int id) {
