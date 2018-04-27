@@ -1,7 +1,7 @@
 package by.bsuir.controller;
 
 import by.bsuir.entity.Resume;
-import by.bsuir.service.IResumeService;
+import by.bsuir.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,21 +13,26 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @Controller
-@RequestMapping("aspirant")
+@RequestMapping("api")
 public class ResumeController {
+
+    private final ResumeService resumeService;
+
     @Autowired
-    private IResumeService resumeService;
+    public ResumeController(ResumeService resumeService) {
+        this.resumeService = resumeService;
+    }
 
     @GetMapping("resume")
     public ResponseEntity<Resume> getArticleById(@RequestParam("id") String id) {
         Resume resume = resumeService.getResumeById(Integer.parseInt(id));
-        return new ResponseEntity<Resume>(resume, HttpStatus.OK);
+        return new ResponseEntity<>(resume, HttpStatus.OK);
     }
 
     @GetMapping("all-resumes")
     public ResponseEntity<List<Resume>> getAllResumes() {
         List<Resume> list = resumeService.getAllResumes();
-        return new ResponseEntity<List<Resume>>(list, HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @PostMapping("resume")
@@ -35,18 +40,18 @@ public class ResumeController {
         resumeService.createResume(resume);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("/resume?id={id}").buildAndExpand(resume.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     @PutMapping("resume")
     public ResponseEntity<Resume> updateResume(@RequestBody Resume resume) {
         resumeService.updateResume(resume);
-        return new ResponseEntity<Resume>(resume, HttpStatus.OK);
+        return new ResponseEntity<>(resume, HttpStatus.OK);
     }
 
     @DeleteMapping("resume")
     public ResponseEntity<Void> deleteResume(@RequestParam("id") String id) {
         resumeService.deleteResume(Integer.parseInt(id));
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
