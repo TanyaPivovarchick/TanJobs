@@ -1,18 +1,17 @@
 package by.bsuir.dao.impl;
 
-import by.bsuir.dao.IResumeDAO;
+import by.bsuir.dao.ResumeDAO;
 import by.bsuir.entity.Resume;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Transactional
 @Repository
-public class ResumeDAO implements IResumeDAO {
+public class ResumeDAOImpl implements ResumeDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -22,10 +21,11 @@ public class ResumeDAO implements IResumeDAO {
         return entityManager.find(Resume.class, id);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Resume> getAllResumes() {
-        TypedQuery<Resume> namedQuery = entityManager.createNamedQuery("Resume.getAll", Resume.class);
-        return namedQuery.getResultList();
+        String hql = "SELECT r FROM Resume r ORDER BY r.id DESC";
+        return (List<Resume>)entityManager.createQuery(hql).getResultList();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ResumeDAO implements IResumeDAO {
         oldResume.setSkills(resume.getSkills());
         oldResume.setSalary(resume.getSalary());
         oldResume.setNumberOfView(resume.getNumberOfView());
-        oldResume.setAspirantId(resume.getAspirantId());
+        oldResume.setUserId(resume.getUserId());
         entityManager.flush();
     }
 
