@@ -2,10 +2,12 @@ package by.bsuir.service;
 
 import by.bsuir.entity.*;
 import by.bsuir.service.exception.*;
+import by.bsuir.viewModel.*;
+import by.bsuir.viewModel.JobVacancy;
 
 public interface DocumentService {
 
-    /*void createPdf(String path, AspirantResume resume)
+    void createPdf(String path, AspirantResume resume)
             throws IllegalArgumentException, ServiceException;
 
     void createPdf(String path, JobVacancy jobVacancy)
@@ -48,6 +50,6 @@ public interface DocumentService {
             throws IllegalArgumentException, ServiceException;
 
     void createCsv(String path, HRManager hrManager)
-            throws IllegalArgumentException, ServiceException;*/
+            throws IllegalArgumentException, ServiceException;
 
 }

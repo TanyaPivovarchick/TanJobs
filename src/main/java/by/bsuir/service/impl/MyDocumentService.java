@@ -1,20 +1,47 @@
 package by.bsuir.service.impl;
 
+import by.bsuir.entity.Company;
+import by.bsuir.entity.HRManager;
+import by.bsuir.service.*;
+import by.bsuir.service.exception.*;
+import by.bsuir.service.utils.*;
+import by.bsuir.viewModel.*;
 
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 
-import by.bsuir.service.DocumentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 @Service("DocumentService")
 public class MyDocumentService implements DocumentService {
 
-    /*private static final String LOGO = "D:\\Hamelioniya\\university\\3 курс\\СПП(Java)\\Лаб№2-8\\SPP2\\logo.PNG";
-    private static final String RUSSIAN_FONT = "D:\\Hamelioniya\\university\\3 курс\\СПП(Java)\\Лаб№2-8\\SPP2\\FreeSans.ttf";
+    private static final String LOGO = "D:\\Учёба\\3 курс\\2 семестр\\СПП\\labs\\Новая папка\\TanJobs\\logo.PNG";
+    private static final String RUSSIAN_FONT = "D:\\Учёба\\3 курс\\2 семестр\\СПП\\labs\\Новая папка\\TanJobs\\FreeSans.ttf";
 
     private CompanyService companyService;
 
+    @Autowired
     public MyDocumentService(CompanyService companyService) {
 
         ArgumentVerificationService.verifyNull(companyService, "companyService");
@@ -703,5 +730,5 @@ public class MyDocumentService implements DocumentService {
         HSSFCell cell = row.createCell(i);
         cell.setCellStyle(style);
         return cell;
-    }*/
+    }
 }
