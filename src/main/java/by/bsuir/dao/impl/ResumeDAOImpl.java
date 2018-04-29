@@ -1,7 +1,7 @@
 package by.bsuir.dao.impl;
 
 import by.bsuir.dao.ResumeDAO;
-import by.bsuir.entity.Resume;
+import by.bsuir.entity.Resume123;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,25 +17,25 @@ public class ResumeDAOImpl implements ResumeDAO {
     private EntityManager entityManager;
 
     @Override
-    public Resume getResumeById(int id) {
-        return entityManager.find(Resume.class, id);
+    public Resume123 getResumeById(int id) {
+        return entityManager.find(Resume123.class, id);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Resume> getAllResumes() {
+    public List<Resume123> getAllResumes() {
         String hql = "SELECT r FROM Resume r ORDER BY r.id DESC";
-        return (List<Resume>)entityManager.createQuery(hql).getResultList();
+        return (List<Resume123>)entityManager.createQuery(hql).getResultList();
     }
 
     @Override
-    public void createResume(Resume resume) {
+    public void createResume(Resume123 resume) {
         entityManager.persist(resume);
     }
 
     @Override
-    public void updateResume(Resume resume) {
-        Resume oldResume = getResumeById(resume.getId());
+    public void updateResume(Resume123 resume) {
+        Resume123 oldResume = getResumeById(resume.getId());
         oldResume.setDate(resume.getDate());
         oldResume.setCareerObjective(resume.getCareerObjective());
         oldResume.setBusinessTrip(resume.getBusinessTrip());

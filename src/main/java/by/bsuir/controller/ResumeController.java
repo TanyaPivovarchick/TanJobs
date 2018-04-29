@@ -1,6 +1,6 @@
 package by.bsuir.controller;
 
-import by.bsuir.entity.Resume;
+import by.bsuir.entity.Resume123;
 import by.bsuir.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -24,19 +24,19 @@ public class ResumeController {
     }
 
     @GetMapping("resume")
-    public ResponseEntity<Resume> getArticleById(@RequestParam("id") String id) {
-        Resume resume = resumeService.getResumeById(Integer.parseInt(id));
+    public ResponseEntity<Resume123> getArticleById(@RequestParam("id") String id) {
+        Resume123 resume = resumeService.getResumeById(Integer.parseInt(id));
         return new ResponseEntity<>(resume, HttpStatus.OK);
     }
 
     @GetMapping("all-resumes")
-    public ResponseEntity<List<Resume>> getAllResumes() {
-        List<Resume> list = resumeService.getAllResumes();
+    public ResponseEntity<List<Resume123>> getAllResumes() {
+        List<Resume123> list = resumeService.getAllResumes();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @PostMapping("resume")
-    public ResponseEntity<Void> createResume(@RequestBody Resume resume, UriComponentsBuilder builder) {
+    public ResponseEntity<Void> createResume(@RequestBody Resume123 resume, UriComponentsBuilder builder) {
         resumeService.createResume(resume);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("/resume?id={id}").buildAndExpand(resume.getId()).toUri());
@@ -44,7 +44,7 @@ public class ResumeController {
     }
 
     @PutMapping("resume")
-    public ResponseEntity<Resume> updateResume(@RequestBody Resume resume) {
+    public ResponseEntity<Resume123> updateResume(@RequestBody Resume123 resume) {
         resumeService.updateResume(resume);
         return new ResponseEntity<>(resume, HttpStatus.OK);
     }

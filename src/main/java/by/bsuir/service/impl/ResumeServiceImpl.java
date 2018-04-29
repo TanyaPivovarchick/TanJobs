@@ -1,7 +1,7 @@
 package by.bsuir.service.impl;
 
 import by.bsuir.dao.ResumeDAO;
-import by.bsuir.entity.Resume;
+import by.bsuir.entity.Resume123;
 import by.bsuir.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,22 +19,22 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public Resume getResumeById(int id) {
+    public Resume123 getResumeById(int id) {
         return resumeDAO.getResumeById(id);
     }
 
     @Override
-    public List<Resume> getAllResumes(){
+    public List<Resume123> getAllResumes(){
         return resumeDAO.getAllResumes();
     }
 
     @Override
-    public void createResume(Resume resume){
+    public void createResume(Resume123 resume){
         resumeDAO.createResume(resume);
     }
 
     @Override
-    public void updateResume(Resume resume) {
+    public void updateResume(Resume123 resume) {
         resumeDAO.updateResume(resume);
     }
 

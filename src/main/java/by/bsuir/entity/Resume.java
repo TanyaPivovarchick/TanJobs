@@ -1,106 +1,230 @@
 package by.bsuir.entity;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
-@Entity
-@Table(name="resume")
-public class Resume {
+/**
+ * Represents a resume domain model.
+ */
+public class Resume implements Comparable<Resume> {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="id")
     private int id;
-
-    @Column(name="date")
-    private Timestamp date;
-
-    @Column(name="career_objective")
+    private Date date;
     private String careerObjective;
-
-    @Column(name="business_trip")
-    private int businessTrip;
-
-    @Column(name="relocation")
-    private int relocation;
-
-    @Column(name="skills")
+    private Boolean isTripPossible;
+    private Boolean isRelocationPossible;
     private String skills;
+    private Float salary;
+    private int numberOfViews;
+    private int aspirantId;
 
-    @Column(name="salary")
-    private Double salary;
+    public Resume() {
+    }
 
-    @Column(name="number_of_view")
-    private int numberOfView;
+    /**
+     * Initializes a new instance of the {@link Resume model}
+     * @param date date of the resume update
+     * @param careerObjective aspirant career objective
+     * @param isTripPossible value indicating the possibility of a business trip
+     * @param isRelocationPossible value indicating the possibility of a relocation
+     * @param skills aspirant skills
+     * @param salary desired salary of an aspirant
+     * @param numberOfViews number of resume views
+     * @param aspirantId id of the aspirant to which the resume belongs
+     */
+    public Resume(Date date, String careerObjective, Boolean isTripPossible, Boolean isRelocationPossible,
+                  String skills, Float salary, int numberOfViews, int aspirantId) {
+        this.date = date;
+        this.careerObjective = careerObjective;
+        this.isTripPossible = isTripPossible;
+        this.isRelocationPossible = isRelocationPossible;
+        this.skills = skills;
+        this.salary = salary;
+        this.numberOfViews = numberOfViews;
+        this.aspirantId = aspirantId;
+    }
 
-    @Column(name="user_id")
-    private int userId;
+    /**
+     * Initializes a new instance of the {@link Resume model}
+     * @param id resume id
+     * @param date date of the resume update
+     * @param careerObjective aspirant career objective
+     * @param isTripPossible value indicating the possibility of a business trip
+     * @param isRelocationPossible value indicating the possibility of a relocation
+     * @param skills aspirant skills
+     * @param salary desired salary of an aspirant
+     * @param numberOfViews number of resume views
+     * @param aspirantId id of the aspirant to which the resume belongs
+     */
+    public Resume(int id, Date date, String careerObjective, Boolean isTripPossible, Boolean isRelocationPossible,
+                  String skills, Float salary, int numberOfViews, int aspirantId) {
+        this.id = id;
+        this.date = date;
+        this.careerObjective = careerObjective;
+        this.isTripPossible = isTripPossible;
+        this.isRelocationPossible = isRelocationPossible;
+        this.skills = skills;
+        this.salary = salary;
+        this.numberOfViews = numberOfViews;
+        this.aspirantId = aspirantId;
+    }
 
+    /**
+     * Gets a resume id
+     * @return resume id
+     */
     public int getId() {
         return id;
     }
 
-    public Timestamp getDate() {
+    /**
+     * Sets a resume id
+     * @param id resume id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Gets a date of the resume update
+     * @return date of the resume update
+     */
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    /**
+     * Sets a date of the resume update
+     * @param date date of the resume update
+     */
+    public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Gets an aspirant career objective
+     * @return aspirant career objective
+     */
     public String getCareerObjective() {
         return careerObjective;
     }
 
+    /**
+     * Sets an aspirant career objective
+     * @param careerObjective aspirant career objective
+     */
     public void setCareerObjective(String careerObjective) {
         this.careerObjective = careerObjective;
     }
 
-    public int getBusinessTrip() {
-        return businessTrip;
+    /**
+     * Gets a value indicating the possibility of a business trip
+     * @return value indicating the possibility of a business trip
+     */
+    public Boolean getTripPossible() {
+        return isTripPossible;
     }
 
-    public void setBusinessTrip(int businessTrip) {
-        this.businessTrip = businessTrip;
+    /**
+     * Sets a value indicating the possibility of a business trip
+     * @param tripPossible value indicating the possibility of a business trip
+     */
+    public void setTripPossible(Boolean tripPossible) {
+        isTripPossible = tripPossible;
     }
 
-    public int getRelocation() {
-        return relocation;
+    /**
+     * Gets a value indicating the possibility of a relocation
+     * @return value indicating the possibility of a relocation
+     */
+    public Boolean getRelocationPossible() {
+        return isRelocationPossible;
     }
 
-    public void setRelocation(int relocation) {
-        this.relocation = relocation;
+    /**
+     * Sets a value indicating the possibility of a relocation
+     * @param relocationPossible value indicating the possibility of a relocation
+     */
+    public void setRelocationPossible(Boolean relocationPossible) {
+        isRelocationPossible = relocationPossible;
     }
 
+    /**
+     * Gets aspirant skills
+     * @return aspirant skills
+     */
     public String getSkills() {
         return skills;
     }
 
+    /**
+     * Sets aspirant skills
+     * @param skills aspirant skills
+     */
     public void setSkills(String skills) {
         this.skills = skills;
     }
 
-    public Double getSalary() {
+    /**
+     * Gets desired salary of the aspirant
+     * @return desired salary of the aspirant
+     */
+    public Float getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    /**
+     * Sets desired salary of the aspirant
+     * @param salary desired salary of the aspirant
+     */
+    public void setSalary(Float salary) {
         this.salary = salary;
     }
 
-    public int getNumberOfView() {
-        return numberOfView;
+    /**
+     * Gets a number of resume views
+     * @return number of resume views
+     */
+    public int getNumberOfViews() {
+        return numberOfViews;
     }
 
-    public void setNumberOfView(int numberOfView) {
-        this.numberOfView = numberOfView;
+    /**
+     * Sets a number of resume views
+     * @param numberOfViews number of resume views
+     */
+    public void setNumberOfViews(int numberOfViews) {
+        this.numberOfViews = numberOfViews;
     }
 
-    public int getUserId() {
-        return userId;
+    /**
+     * Gets id of the aspirant to which the resume belongs
+     * @return
+     */
+    public int getAspirantId() {
+        return aspirantId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    @Override
+    public int compareTo(Resume obj) {
+        if (obj == null) {
+            throw new NullPointerException("Object is null");
+        }
+
+        return Integer.compare(this.getId(), obj.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+
+        Resume resume = (Resume)obj;
+
+        return this.getId() == resume.getId();
     }
 }
