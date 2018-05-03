@@ -1,13 +1,10 @@
 export class User {
 
-    id: string;
+    id?: string;
     email: string;
     password: string;
     firstName: string;
     lastName: string;
-
-    constructor() {
-    }
 
     public static isNull(user: User): boolean {
         return user.email === null &&

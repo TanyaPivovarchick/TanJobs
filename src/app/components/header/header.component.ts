@@ -1,16 +1,30 @@
 ﻿import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/switchMap';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+import { AuthenticationService } from '../../services/authentication.service';
+
+import { User } from '../../models/user';
 
 @Component({
   selector   : 'header',
   templateUrl: './header.component.html'
 })
 
-export class HeaderComponent { }
+export class HeaderComponent {
+
+  user: User;
+  email = '';
+
+  constructor(
+    private authService: AuthenticationService, 
+    private router: Router
+  ) { }
+
+  isAuth() : boolean {
+	if (this.authService.isLoggedIn()) {
+      this.user = JSON.parse(window.localStorage.getItem('user'));
+      this.email = this.user.email;
+    }
+	return this.authService.isLoggedIn();
+  }
+}

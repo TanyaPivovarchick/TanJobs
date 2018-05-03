@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import { AlertService } from '../../services/alert.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
-import {User} from '../../models/user';
+import { User } from '../../models/user';
 
 @Component({
     selector: 'app-login',
@@ -27,14 +27,18 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        this.authenticationService.login(this.model)
-            .subscribe(
-                data => {
-                    this.router.navigate(['/']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+				
+		this.authenticationService.checkUser(this.model.email, this.model.password)
+			.then( (data: User) => {
+				const user: User = JSON.parse(data['_body']);
+				this.authenticationService.logout();
+				this.authenticationService.login();
+				window.localStorage.setItem('user', JSON.stringify(user));
+				this.router.navigate(['/']);
+			})
+			.catch(error => {
+				this.alertService.error('Неправильный email или пароль.');
+				this.loading = false;
+			});
     }
 }
