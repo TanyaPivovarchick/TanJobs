@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserByEmailAndPassword(String email, String password) {
-        Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-        return userRepository.findOneByEmailAndPassword(email, encoder.encodePassword(password, null));
+        return userRepository.findOneByEmailAndPassword(email, password);
     }
 }
