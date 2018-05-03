@@ -1,40 +1,34 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService } from '../../services/alert.service';
-import { AuthenticationService } from '../../services/authentication.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
-    moduleId: module.id,
-    templateUrl: 'login.component.html'
+    selector: 'app-registr',
+    templateUrl: 'registration.component.html'
 })
 
-export class LoginComponent implements OnInit {
+export class RegistrationComponent {
     model: any = {};
     loading = false;
-    returnUrl: string;
 
     constructor(
-        private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService,
+        private userService: UserService,
         private alertService: AlertService) { }
 
-    ngOnInit() {
-        this.authenticationService.logout();
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    }
-
-    login() {
+    register() {
         this.loading = true;
-        /*this.authenticationService.login(this.model)
+        this.userService.create(this.model)
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    this.alertService.success('Поздравляем, Вы зарегестрированы!', true);
+                    this.router.navigate(['login']);
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.alertService.error('Пользователь с таким email уже существует.');
                     this.loading = false;
-                });*/
+                });
     }
 }
