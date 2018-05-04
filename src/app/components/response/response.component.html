@@ -1,0 +1,21 @@
+<h2>Отклики</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>Название</th>
+    <th>Описание</th>
+    <th>Статус</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let vacancy of allVacancies">
+    <td class="hidden"></td>
+    <td class="text-lg-center">{{vacancy.name}}</td>
+    <td class="text-lg-center">{{vacancy.description}}</td>
+	<td class="text-lg-center">{{vacancy.status}}</td>
+    <td><button class="btn btn-danger" (click)="deleteResponce(vacancy.id)">Отмена</button></td>
+  </tr>
+  </tbody>
+</table>

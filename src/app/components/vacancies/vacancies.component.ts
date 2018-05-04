@@ -21,9 +21,7 @@ export class VacanciesComponent implements OnInit {
    
    getAllVacancies() {
         this.vacancyService.getAllVacancies()
-		  .subscribe(
-                data => this.allVacancies = data,
-                errorCode =>  this.statusCode = errorCode);   
+		  .subscribe(data => this.allVacancies = data);   
    }
    
    leaveResponce(vacancyId: string) {   

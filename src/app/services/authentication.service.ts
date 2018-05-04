@@ -31,4 +31,13 @@ export class AuthenticationService {
 		const data =  {email: email, password: password};
 		return this.http.post('http://localhost:8082/api/login/', data).toPromise();
 	}
+
+	getId(): string {
+    		let id = '';
+    		if (this.isLoggedIn()) {
+      			const user = JSON.parse(window.localStorage.getItem('user'));
+      			id = user.id;
+    		}
+    		return id;
+  	}
 }
