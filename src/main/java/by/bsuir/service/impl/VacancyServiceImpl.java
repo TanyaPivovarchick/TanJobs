@@ -25,4 +25,9 @@ public class VacancyServiceImpl implements VacancyService {
         Iterator<JobVacancy> vacancyIterator = vacancyRepository.findAll().iterator();
         return IteratorUtils.toList(vacancyIterator);
     }
+
+    @Override
+    public JobVacancy getVacancyById(Long id) {
+        return vacancyRepository.findOne(id);
+    }
 }

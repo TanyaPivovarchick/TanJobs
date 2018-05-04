@@ -10,7 +10,7 @@ public class JobVacancy {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id")
-    private int id;
+    private long id;
 
     @Column(name="name")
     private String name;
@@ -34,7 +34,7 @@ public class JobVacancy {
      * Gets a job vacancy id
      * @return job vacancy id
      */
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -42,7 +42,7 @@ public class JobVacancy {
      * Sets a job vacancy id
      * @param id job vacancy id
      */
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

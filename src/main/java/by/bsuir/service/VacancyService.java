@@ -7,4 +7,5 @@ import java.util.List;
 public interface VacancyService {
 
     List<JobVacancy> getAllVacancies();
+    JobVacancy getVacancyById(Long id);
 }
