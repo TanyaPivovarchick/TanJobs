@@ -24,7 +24,12 @@ export class VacanciesComponent implements OnInit {
 		  .subscribe(data => this.allVacancies = data);   
    }
    
-   leaveResponce(vacancyId: string) {   
+   leaveResponce(vacancy: Vacancy) {  
+		vacancy.isResponse = true;
+   }
+   
+   cancelResponce(vacancy: Vacancy) {
+		vacancy.isResponse = false;
    }
 }
     

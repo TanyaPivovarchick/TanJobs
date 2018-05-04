@@ -15,7 +15,10 @@
     <td class="text-lg-center">{{vacancy.name}}</td>
     <td class="text-lg-center">{{vacancy.description}}</td>
 	<td class="text-lg-center">{{vacancy.status}}</td>
-    <td><button class="btn btn-success" (click)="leaveResponce(vacancy.id)">Откликнуться</button></td>
+    <td width="200px">
+	  <button *ngIf="!vacancy.isResponse" class="btn btn-success" (click)="leaveResponce(vacancy)">Откликнуться</button>
+	  <button *ngIf="vacancy.isResponse" class="btn btn-danger" (click)="cancelResponce(vacancy)">Отменить отклик</button>
+	</td>
   </tr>
   </tbody>
 </table>
