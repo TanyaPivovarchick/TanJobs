@@ -11,11 +11,13 @@ import { StartPageComponent } from './components/start-page/start-page.component
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { VacanciesComponent } from './components/vacancies/vacancies.component';
 import { AlertComponent } from './components/alert/alert.component';
 
 import { AlertService } from './services/alert.service';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
+import { VacancyService } from './services/vacancy.service';
 
 @NgModule({
     imports: [
@@ -31,12 +33,14 @@ HttpModule,
 		HeaderComponent,
 		LoginComponent,
 		RegistrationComponent,
+		VacanciesComponent,
 		AlertComponent
     ],
     providers: [
         AlertService,
         AuthenticationService,
-	UserService
+	UserService,
+	VacancyService
     ],
     bootstrap: [AppComponent]
 })
