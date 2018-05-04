@@ -1,66 +1,33 @@
 package by.bsuir.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Represents a job vacancy domain model.
- */
-public class JobVacancy implements Comparable<JobVacancy> {
+@Entity
+@Table(name = "vacancy")
+public class JobVacancy {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id")
     private int id;
+
+    @Column(name="name")
     private String name;
+
+    @Column(name="date")
     private Date date;
+
+    @Column(name="description")
     private String description;
+
+    @Column(name="status")
     private String status;
+
+    @Column(name="address")
     private String address;
-    private int hrManagerId;
-    private int companyId;
 
     public JobVacancy() {
-    }
-
-    /**
-     * Initializes a new instance of the {@link JobVacancy model}
-     * @param name job vacancy name
-     * @param date date of the job vacancy update
-     * @param description job vacancy description
-     * @param status job vacancy status
-     * @param address address of possible job
-     * @param hrManagerId id of the HRManager to which the vacancy refers
-     * @param companyId id of the company to which the vacancy refers
-     */
-    public JobVacancy(String name, Date date, String description, String status, String address, int hrManagerId,
-                      int companyId) {
-        this.name = name;
-        this.date = date;
-        this.description = description;
-        this.status = status;
-        this.address = address;
-        this.hrManagerId = hrManagerId;
-        this.companyId = companyId;
-    }
-
-    /**
-     * Initializes a new instance of the {@link JobVacancy model}
-     * @param id job vacancy id
-     * @param name job vacancy name
-     * @param date date of the job vacancy update
-     * @param description job vacancy description
-     * @param status job vacancy status
-     * @param address address of possible job
-     * @param hrManagerId id of the HRManager to which the vacancy refers
-     * @param companyId id of the company to which the vacancy refers
-     */
-    public JobVacancy(int id, String name, Date date, String description, String status, String address,
-                      int hrManagerId, int companyId) {
-        this.id = id;
-        this.name = name;
-        this.date = date;
-        this.description = description;
-        this.status = status;
-        this.address = address;
-        this.hrManagerId = hrManagerId;
-        this.companyId = companyId;
     }
 
     /**
@@ -157,61 +124,5 @@ public class JobVacancy implements Comparable<JobVacancy> {
      */
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    /**
-     * Gets id of the HRManager to which the vacancy refers
-     * @return id of the HRManager to which the vacancy refers
-     */
-    public int getHrManagerId() {
-        return hrManagerId;
-    }
-
-    /**
-     * Sets id of the HRManager to which the vacancy refers
-     * @param hrManagerId id of the HRManager to which the vacancy refers
-     */
-    public void setHrManagerId(int hrManagerId) {
-        this.hrManagerId = hrManagerId;
-    }
-
-    /**
-     * Gets id of the company to which the vacancy refers
-     * @return id of the company to which the vacancy refers
-     */
-    public int getCompanyId() {
-        return companyId;
-    }
-
-    /**
-     * Sets id of the company to which the vacancy refers
-     * @param companyId id of the company to which the vacancy refers
-     */
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
-    }
-
-    @Override
-    public int compareTo(JobVacancy obj) {
-        if (obj == null) {
-            throw new NullPointerException("Object is null");
-        }
-
-        return Integer.compare(this.getId(), obj.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || this.getClass() != obj.getClass()) return false;
-
-        JobVacancy jobVacancy = (JobVacancy)obj;
-
-        return this.getId() == jobVacancy.getId();
     }
 }

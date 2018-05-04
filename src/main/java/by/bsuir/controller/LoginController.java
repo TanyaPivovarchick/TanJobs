@@ -2,7 +2,6 @@ package by.bsuir.controller;
 
 import by.bsuir.entity.User;
 import by.bsuir.service.UserService;
-import by.bsuir.service.impl.MyAspirantService;
 import by.bsuir.viewModel.LoginData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
